@@ -42,7 +42,7 @@ target_include_directories(${BUILD_TARGET} PRIVATE ${PROJECT_SOURCE_DIR})
 target_link_libraries(${BUILD_TARGET} ${TINYEXR_EXT_LIBRARIES} ${CMAKE_DL_LIBS})
 
 # Increase warning level for clang.
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND NOT MSVC)
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND NOT MSVC AND NOT EMSCRIPTEN)
   set(CLANG_COMPILE_FLAGS "-Weverything -Werror -Wno-padded -Wno-c++98-compat-pedantic -Wno-documentation -Wno-unused-member-function")
   if (${CMAKE_CXX_COMPILER_VERSION} VERSION_GREATER 16)
     set(CLANG_COMPILE_FLAGS "${CLANG_COMPILE_FLAGS} -Wno-unsafe-buffer-usage")
